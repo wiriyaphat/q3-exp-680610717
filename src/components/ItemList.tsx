@@ -1,7 +1,6 @@
 import { useItemStore } from "@/store/dataStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+
 import {
   Table,
   TableBody,
@@ -10,8 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Trash } from "lucide-react";
-
+// import { Trash } from "lucide-react";
+import { ExpenseTable } from "./ItemTableCell";
 export function ItemList() {
   const { expenses } = useItemStore();
 
@@ -43,9 +42,13 @@ export function ItemList() {
               </TableRow>
             ) : (
               // replace the following hardcoded row with the dynamic mapping of data items
+
               <TableRow>
-                <TableCell className="text-muted-foreground">
-                  2026-10-05
+                {expenses.map((exp) => (
+                  <ExpenseTable expense={exp} />
+                ))}
+                {/* <TableCell className="text-muted-foreground">
+                  2026-10-05 expenses.id;
                 </TableCell>
                 <TableCell className="font-medium">ซื้อของ 7-11</TableCell>
                 <TableCell>
@@ -61,7 +64,7 @@ export function ItemList() {
                     <Trash className="h-4 w-4" />
                     Delete
                   </Button>
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             )}
           </TableBody>
